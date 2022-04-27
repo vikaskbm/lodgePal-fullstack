@@ -38,18 +38,27 @@ class RoomDetailView(APIView):
             return Response(status=status.HTTP_404_NOT_FOUND)
     
     def put(self, request, pk):
-        pass
+        room = get_object_or_404(Room, pk=pk)
+        if room is not None:
+            if room and room.user != request.user:
+                return Response(status=status.HTTP_403_FORBIDDEN)
+            serializer = WriteRoomSerializer(room, data=request.data, partial=True)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_200_OK)
+            else:
+                return Response(status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
     def delete(self, request, pk):
         room = get_object_or_404(Room, pk=pk)
 
-        if room and room.user != request.user:
-            return Response(status=status.HTTP_403_FORBIDDEN)
-
-        elif room is not None:
+        if room is not None:
+            if room and room.user != request.user:
+                return Response(status=status.HTTP_403_FORBIDDEN)
             room.delete()
             return Response(status=status.HTTP_200_OK)
-        
         else:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
