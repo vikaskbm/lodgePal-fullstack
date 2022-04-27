@@ -26,7 +26,6 @@ class ReadUserSerializer(serializers.ModelSerializer):
             "email", 
             "avatar", 
             "superhost", 
-            "favs", 
         )
 
 class WriteUserSerializer(serializers.ModelSerializer):
