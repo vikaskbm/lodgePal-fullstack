@@ -3,37 +3,17 @@ from rest_framework import serializers
 from .models import User
 
 
-class RelatedUserSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = (
-            "username",
-            "first_name", 
-            "last_name", 
-            "email", 
-            "avatar", 
-            "superhost", 
-        )
-
-class ReadUserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = (
-            "pk", 
+            "id",
             "username", 
             "first_name", 
             "last_name", 
-            "email", 
-            "avatar", 
-            "superhost", 
+            "email",
+            "avatar",
+            "superhost" 
         )
 
-class WriteUserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = (
-            "username", 
-            "first_name", 
-            "last_name", 
-            "email", 
-        )
+        read_only_fields = ("id", "superhost", "avatar")
