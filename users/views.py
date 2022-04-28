@@ -85,7 +85,7 @@ def login(request):
     print(user)
     if user:
         encoded_jwt = jwt.encode(
-            {"id": user.pk},
+            {"pk": user.pk},
             settings.SECRET_KEY,
             algorithm="HS256"
         )
