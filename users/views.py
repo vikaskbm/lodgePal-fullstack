@@ -1,11 +1,15 @@
+from django.shortcuts import get_object_or_404
+from django.contrib.auth import authenticate
+from django.conf import settings
+
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
 from rest_framework.decorators import api_view
-from django.shortcuts import get_object_or_404
-from rooms import serializers
+from rest_framework import status
+
+import jwt
 
 from rooms.serializers import RoomSerializer
 from rooms.models import Room
@@ -68,3 +72,23 @@ def user_detail(request, pk):
         return Response(UserSerializer(user).data)
     return Response(status=status.HTTP_404_NOT_FOUND)
 
+
+@api_view(["POST"])
+def login(request):
+    username = request.data.get("username")
+    password = request.data.get("password")
+
+    if not username or not password:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+    user = authenticate(username=username, password=password)
+    print(user)
+    if user:
+        encoded_jwt = jwt.encode(
+            {"id": user.pk},
+            settings.SECRET_KEY,
+            algorithm="HS256"
+        )
+        return Response(data={"token": encoded_jwt}, status=status.HTTP_202_ACCEPTED)
+    else:
+        return Response(status=status.HTTP_401_UNAUTHORIZED)
