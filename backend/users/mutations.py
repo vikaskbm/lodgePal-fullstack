@@ -5,6 +5,7 @@ from django.conf import settings
 import jwt
 
 from .models import User
+from rooms.models import Room
 
 class CreateAccountMutation(graphene.Mutation):
     
@@ -48,3 +49,29 @@ class LoginMutation(graphene.Mutation):
 
         else:
             return LoginMutation(error="Wrong username or passoword")
+
+
+class ToggleFavsMutation(graphene.Mutation):
+    class Arguments:
+        room_id = graphene.Int(required=True)
+
+    ok = graphene.Boolean()
+    error = graphene.String()
+
+    def mutate(self, info, room_id):
+        user = info.context.user
+        if not user.is_authenticated:
+            raise Exception("You need to be logged in")
+        
+        try:
+            room = Room.objects.get(id=room_id)
+
+            if room in user.favs.all():
+                user.favs.remove(room)
+            else:
+                user.favs.add(room)
+            return ToggleFavsMutation(ok=True)
+
+        except Room.DoesNotExist:
+            return ToggleFavsMutation(error="Room Does not exist")
+

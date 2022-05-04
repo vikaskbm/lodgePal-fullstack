@@ -14,7 +14,7 @@ class JWTMiddleware:
                 pk = decoded.get('pk')
                 user = User.objects.get(pk=pk)
                 info.context.user = user
-                
+
             except Exception:
                 pass
         return next(root, info, **args)
