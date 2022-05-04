@@ -1,7 +1,7 @@
 import graphene
 
 from .types import UserType
-from .mutations import CreateAccountMutation
+from .mutations import CreateAccountMutation, LoginMutation
 from .queries import resolve_user
 
 
@@ -10,3 +10,4 @@ class Query:
 
 class Mutation:
     create_account = CreateAccountMutation.Field()
+    login = LoginMutation.Field()
