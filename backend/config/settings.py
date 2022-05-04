@@ -48,6 +48,7 @@ PROJECT_APPS = [
 
 THIRD_PARTY_APPS = [
     "rest_framework",
+    "graphene_django"
 ]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
@@ -146,4 +147,8 @@ REST_FRAMEWORK = {
         'config.authentication.JWTAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ]
+}
+
+GRAPHENE = {
+    "SCHEMA": "django_root.schema.schema"
 }

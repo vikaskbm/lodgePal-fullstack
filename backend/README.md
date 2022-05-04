@@ -19,3 +19,6 @@ REST & GraphQL API of the lodgeP Clone using Django REST Framework and Graphene 
 - [x] Search By Coords
 - [ ] Book Room(option to allow sharing. if someone does opt for sharing 40%money returned)
 - [ ] Share Room(you have to pay only 60% if sharing room with someone)
+
+
+### GraphQL Actions
