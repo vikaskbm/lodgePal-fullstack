@@ -26,12 +26,12 @@ REST & GraphQL API of the lodgeP Clone using Django REST Framework and Graphene 
 ### Rooms
 - [x] List Rooms
 - [x] See Room
-- [ ] Add room to favs
+- [x] Add room to favs
 
 ### Users
 - [x] See User
 - [x] Login
 - [x] Create account
 - [x] See profile
-- [ ] Edit profile
+- [x] Edit profile
 
