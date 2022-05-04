@@ -1,4 +1,3 @@
-from typing_extensions import Required
 import graphene
 
 from .types import RoomListResponse, RoomType
