@@ -149,6 +149,7 @@ REST_FRAMEWORK = {
     ]
 }
 
+# GRAPHQL
 GRAPHENE = {
-    "SCHEMA": "django_root.schema.schema"
+    "MIDDLEWARE": ("config.middlewares.JWTMiddleware",),
 }

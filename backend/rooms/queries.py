@@ -1,7 +1,7 @@
 from .models import Room
 from .types import RoomListResponse
  
-def resolve_rooms(self, info, page=1):
+def resolve_rooms(root, info, page=1):
     if page < 0:
         page = 1
 
@@ -13,5 +13,5 @@ def resolve_rooms(self, info, page=1):
     total = Room.objects.count()
     return RoomListResponse(arr=arr, total=total)
     
-def resolve_room(self, info, id):
+def resolve_room(root, info, id):
     return Room.objects.get(id=id)
