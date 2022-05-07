@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Text, View, Image } from "react-native";
 import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 
 import Ionicons from "@expo/vector-icons/Ionicons";
 import * as SplashScreen from "expo-splash-screen";
@@ -8,7 +9,7 @@ import * as Font from "expo-font";
 import { Asset } from "expo-asset";
 
 import Gate from "./components/Gate";
-import store from "./redux/store";
+import store, { persistor } from "./redux/store";
 
 const cacheImages = (images) => {
   return images.map((image) => {
@@ -78,7 +79,9 @@ export default function App() {
       onLayout={onLayoutRootView}
     >
       <Provider store={store}>
-        <Gate />
+        <PersistGate persistor={persistor}>
+          <Gate />
+        </PersistGate>
       </Provider>
     </View>
   );
