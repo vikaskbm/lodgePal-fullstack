@@ -1,3 +1,4 @@
+import "react-native-gesture-handler";
 import React, { useCallback, useEffect, useState } from "react";
 import { Text, View, Image } from "react-native";
 import { Provider } from "react-redux";
@@ -74,10 +75,7 @@ export default function App() {
   }
 
   return (
-    <View
-      style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
-      onLayout={onLayoutRootView}
-    >
+    <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
       <Provider store={store}>
         <PersistGate persistor={persistor}>
           <Gate />
