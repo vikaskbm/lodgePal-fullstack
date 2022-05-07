@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^13.0.0",
+    "@reduxjs/toolkit": "^1.8.1",
     "expo": "~45.0.0",
     "expo-asset": "^8.5.0",
     "expo-font": "~10.1.0",
@@ -19,7 +20,9 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-native": "0.68.1",
-    "react-native-web": "0.17.7"
+    "react-native-web": "0.17.7",
+    "react-redux": "^8.0.1",
+    "redux": "^4.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

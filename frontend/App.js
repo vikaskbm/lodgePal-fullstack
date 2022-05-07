@@ -1,9 +1,11 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Text, View, Image } from "react-native";
+
 import Ionicons from "@expo/vector-icons/Ionicons";
 import * as SplashScreen from "expo-splash-screen";
 import * as Font from "expo-font";
 import { Asset } from "expo-asset";
+import Gate from "./components/Gate";
 
 const cacheImages = (images) => {
   return images.map((image) => {
@@ -72,8 +74,7 @@ export default function App() {
       style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
       onLayout={onLayoutRootView}
     >
-      <Text>SplashScreen Demo! 👋</Text>
-      <Ionicons name="rocket" size={80} />
+      <Gate />
     </View>
   );
 }
