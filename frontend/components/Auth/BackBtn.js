@@ -1,9 +1,6 @@
 import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { Platform } from "react-native";
-import styled from "styled-components";
-
-const isAndroid = Platform.OS === "android";
+import styled from "styled-components/native";
 
 const Container = styled.View``;
 
