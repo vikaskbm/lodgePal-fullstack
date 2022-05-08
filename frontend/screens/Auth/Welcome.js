@@ -31,7 +31,7 @@ const BtnContainer = styled.View`
 
 export default ({ navigation }) => {
   const goToSignUp = () => navigation.navigate("SignUp");
-  const goToSignIn = () => navigation.navigate("SignUp");
+  const goToSignIn = () => navigation.navigate("SignIn");
   return (
     <Container>
       <BlurView
@@ -52,7 +52,6 @@ export default ({ navigation }) => {
         </BtnContainer>
       </BlurView>
       <Image source={require("../../assets/loginBg.png")} />
-      <StatusBar barStyle="light-content" />
     </Container>
   );
 };

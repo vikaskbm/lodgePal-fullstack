@@ -12,7 +12,7 @@ margin-bottom: 50px;
   border-radius: 30px;
   padding: 15px 0px;
   align-items: center;
-  width: ${width / 2}px;
+  width: ${width / 1.5}px;
   background-color: ${(props) => (props.accent ? colors.red : "transparent")};
 `;
 
