@@ -7,7 +7,7 @@ import colors from "../../colors";
 const { width } = Dimensions.get("screen");
 
 const Container = styled.TextInput`
-  width: ${width / 1.5}px;
+  width: ${width / 1.4}px;
   padding: 12.5px 20px;
   border-radius: 30px;
   margin-bottom: 10px;

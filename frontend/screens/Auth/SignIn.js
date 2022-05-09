@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { StatusBar } from "react-native";
+import { StatusBar, KeyboardAvoidingView } from "react-native";
 import styled from "styled-components/native";
+import DismissKeyboard from "../../components/Auth/DismissKeyboard";
 import Btn from "./../../components/Auth/Btn";
 import Input from "./../../components/Auth/Input";
 
@@ -10,7 +11,9 @@ const Container = styled.View`
   flex: 1;
 `;
 
-const TextInput = styled.TextInput``;
+const InputContainer = styled.View`
+  margin-bottom: 30px;
+`;
 
 export default () => {
   const [username, setUsername] = useState("");
@@ -19,23 +22,28 @@ export default () => {
   const handleSubmit = () => alert(`${username} ${password}`);
 
   return (
-    <Container>
-      <StatusBar barStyle="dark-content" />
-      <Input
-        value={username}
-        placeholder="Username"
-        autoCapitalize="none"
-        stateFn={setUsername}
-      />
-      <Input
-        value={password}
-        placeholder="Password"
-        autoCapitalize="none"
-        isPassword={true}
-        stateFn={setPassword}
-      />
-      <Btn text={"Sign In"} accent onPress={handleSubmit} />
-      <TextInput />
-    </Container>
+    <DismissKeyboard>
+      <Container>
+        <StatusBar barStyle="dark-content" />
+        <KeyboardAvoidingView behavior="height">
+          <InputContainer>
+            <Input
+              value={username}
+              placeholder="Username"
+              autoCapitalize="none"
+              stateFn={setUsername}
+            />
+            <Input
+              value={password}
+              placeholder="Password"
+              autoCapitalize="none"
+              isPassword={true}
+              stateFn={setPassword}
+            />
+          </InputContainer>
+          <Btn text={"Sign In"} accent onPress={handleSubmit} />
+        </KeyboardAvoidingView>
+      </Container>
+    </DismissKeyboard>
   );
 };

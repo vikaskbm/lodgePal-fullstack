@@ -20,13 +20,13 @@ const Image = styled.Image`
 `;
 
 const Logo = styled.Image`
-  margin-top: 180px;
+  margin-top: 100px;
   width: 140px;
   height: 140px;
 `;
 
 const BtnContainer = styled.View`
-  margin-top: 40px;
+  margin-top: 20px;
 `;
 
 export default ({ navigation }) => {
