@@ -16,28 +16,29 @@ const Container = styled.TextInput`
 `;
 
 const Input = ({
-  autoCapitalize,
   value,
   placeholder,
   isPassword = false,
+  autoCapitalize,
   stateFn,
-}) => {
-  return (
-    <Container
-      value={value}
-      placeholder={placeholder}
-      secureTextEntry={isPassword ? true : false}
-      autoCapitalize={autoCapitalize}
-      onChange={(text) => stateFn(text)}
-    />
-  );
-};
+  keyboardType,
+}) => (
+  <Container
+    keyboardType={keyboardType}
+    value={value}
+    placeholder={placeholder}
+    secureTextEntry={isPassword ? true : false}
+    autoCapitalize={autoCapitalize}
+    onChangeText={(text) => stateFn(text)}
+  />
+);
 
 Input.propTypes = {
-  autoCapitalize: PropTypes.string,
   value: PropTypes.string,
   placeholder: PropTypes.string,
   isPassword: PropTypes.bool,
+  autoCapitalize: PropTypes.string,
   stateFn: PropTypes.func.isRequired,
 };
+
 export default Input;

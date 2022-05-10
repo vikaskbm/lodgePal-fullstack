@@ -4,4 +4,4 @@ from .models import User
 class UserType(DjangoObjectType):
     class Meta:
         model = User
-        exclude = ('password', 'isSuperuser', 'last_login')
+        exclude = ('password', 'is_superuser', 'last_login')
