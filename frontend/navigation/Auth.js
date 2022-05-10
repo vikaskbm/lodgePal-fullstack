@@ -13,8 +13,8 @@ const Auth = createStackNavigator();
 export default () => {
   return (
     <Auth.Navigator
-      mode="modal"
       screenOptions={{
+        presentation: "modal",
         headerBackTitleVisible: false,
         headerTitleAlign: "center",
         headerTransparent: true,

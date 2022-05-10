@@ -6,6 +6,7 @@ from users.models import User
 
 class JWTMiddleware:
     def resolve(self, next, root, info, **args):
+        print("ass")
         request = info.context
         token = request.META.get("HTTP_AUTHORIZATION")
         if token:

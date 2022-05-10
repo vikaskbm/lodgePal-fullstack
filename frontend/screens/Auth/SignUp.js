@@ -17,13 +17,14 @@ const InputContainer = styled.View`
   margin-bottom: 30px;
 `;
 
-export default () => {
+export default ({ navigation }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const validateForm = () => {
+  const isFormValid = () => {
     if (
       firstName === "" ||
       lastName === "" ||
@@ -31,17 +32,20 @@ export default () => {
       password === ""
     ) {
       alert("All fields are required");
-      return;
+      return false;
     }
 
     if (!isEmail(email)) {
       alert("Please add a valid email");
-      return;
+      return false;
     }
+    return true;
   };
   const handleSubmit = async () => {
-    validateForm();
-    console.log("1");
+    if (!isFormValid()) {
+      return;
+    }
+    setLoading(true);
     try {
       const { status } = await createAccount({
         first_name: firstName,
@@ -50,9 +54,13 @@ export default () => {
         username: email,
         password: password,
       });
-      console.log(status);
+      if (status === 201) alert("Account created. Sign in please");
+      navigation.navigate("SignIn", { email, password });
     } catch (e) {
+      alert("The email is taken");
       console.warn(e);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -89,7 +97,12 @@ export default () => {
               stateFn={setPassword}
             />
           </InputContainer>
-          <Btn text={"Sign Up"} accent onPress={handleSubmit} />
+          <Btn
+            text={"Sign Up"}
+            accent
+            onPress={handleSubmit}
+            loading={loading}
+          />
         </KeyboardAvoidingView>
       </Container>
     </DismissKeyboard>
