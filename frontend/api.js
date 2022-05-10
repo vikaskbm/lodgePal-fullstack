@@ -15,10 +15,11 @@ const callApi = async (method, path, data, jwt, params = {}) => {
   if (method === "get" || method === "delete") {
     return axios[method](fullUrl, { headers, params });
   } else {
-    console.log(fullUrl);
-    console.log(data);
     return axios[method](fullUrl, data, { headers });
   }
 };
 
-export const createAccount = (form) => callApi("post", "/users/", form);
+export default {
+  createAccount: (form) => callApi("post", "/users/", form),
+  login: (form) => callApi("post", "/users/token/", form),
+};

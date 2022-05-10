@@ -4,8 +4,8 @@ import styled from "styled-components/native";
 import DismissKeyboard from "../../components/Auth/DismissKeyboard";
 import Btn from "./../../components/Auth/Btn";
 import Input from "./../../components/Auth/Input";
-import { createAccount } from "./../../api";
 import { isEmail } from "../../utils";
+import api from "../../api";
 
 const Container = styled.View`
   justify-content: center;
@@ -47,7 +47,7 @@ export default ({ navigation }) => {
     }
     setLoading(true);
     try {
-      const { status } = await createAccount({
+      const { status } = await api.createAccount({
         first_name: firstName,
         last_name: lastName,
         email,

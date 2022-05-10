@@ -78,7 +78,6 @@ def user_detail(request, pk):
 def login(request):
     username = request.data.get("username")
     password = request.data.get("password")
-
     if not username or not password:
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
@@ -90,6 +89,6 @@ def login(request):
             settings.SECRET_KEY,
             algorithm="HS256"
         )
-        return Response(data={"token": encoded_jwt}, status=status.HTTP_202_ACCEPTED)
+        return Response(data={"id": user.id, "token": encoded_jwt}, status=status.HTTP_202_ACCEPTED)
     else:
         return Response(status=status.HTTP_401_UNAUTHORIZED)

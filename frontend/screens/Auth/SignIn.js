@@ -4,6 +4,9 @@ import styled from "styled-components/native";
 import DismissKeyboard from "../../components/Auth/DismissKeyboard";
 import Btn from "./../../components/Auth/Btn";
 import Input from "./../../components/Auth/Input";
+import { isEmail } from "./../../utils";
+import { useDispatch } from "react-redux";
+import { userLogin } from "../../redux/usersSlice";
 
 const Container = styled.View`
   justify-content: center;
@@ -16,11 +19,35 @@ const InputContainer = styled.View`
 `;
 
 export default ({ route: { params } }) => {
-  console.log(email, password);
-  const [username, setUsername] = useState(params?.email);
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState(params?.email);
   const [password, setPassword] = useState(params?.password);
 
-  const handleSubmit = () => alert(`${username} ${password}`);
+  const isFormValid = () => {
+    if (email === "" || password === "") {
+      alert("All fields are required");
+      return false;
+    }
+    if (!isEmail(email)) {
+      alert("Email is invalid");
+      return false;
+    }
+    return true;
+  };
+  const handleSubmit = () => {
+    console.log(1);
+    console.log(email);
+    console.log(password);
+    if (!isFormValid()) {
+      return;
+    }
+    dispatch(
+      userLogin({
+        username: email,
+        password: password,
+      })
+    );
+  };
 
   return (
     <DismissKeyboard>
@@ -29,10 +56,10 @@ export default ({ route: { params } }) => {
         <KeyboardAvoidingView behavior="height">
           <InputContainer>
             <Input
-              value={username}
-              placeholder="Username"
+              value={email}
+              placeholder="Email"
               autoCapitalize="none"
-              stateFn={setUsername}
+              stateFn={setEmail}
             />
             <Input
               value={password}
