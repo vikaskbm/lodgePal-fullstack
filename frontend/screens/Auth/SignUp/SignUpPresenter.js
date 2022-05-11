@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { StatusBar, KeyboardAvoidingView } from "react-native";
 import styled from "styled-components/native";
-import DismissKeyboard from "../../components/Auth/DismissKeyboard";
-import Btn from "./../../components/Auth/Btn";
-import Input from "./../../components/Auth/Input";
-import utils from "../../utils";
-import api from "../../api";
+import DismissKeyboard from "../../../components/Auth/DismissKeyboard";
+import Btn from "./../../../components/Auth/Btn";
+import Input from "./../../../components/Auth/Input";
 
 const Container = styled.View`
   justify-content: center;
@@ -17,53 +15,19 @@ const InputContainer = styled.View`
   margin-bottom: 30px;
 `;
 
-export default ({ navigation }) => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  const isFormValid = () => {
-    if (
-      firstName === "" ||
-      lastName === "" ||
-      email === "" ||
-      password === ""
-    ) {
-      alert("All fields are required");
-      return false;
-    }
-
-    if (!utils.isEmail(email)) {
-      alert("Please add a valid email");
-      return false;
-    }
-    return true;
-  };
-  const handleSubmit = async () => {
-    if (!isFormValid()) {
-      return;
-    }
-    setLoading(true);
-    try {
-      const { status } = await api.createAccount({
-        first_name: firstName,
-        last_name: lastName,
-        email,
-        username: email,
-        password: password,
-      });
-      if (status === 201) alert("Account created. Sign in please");
-      navigation.navigate("SignIn", { email, password });
-    } catch (e) {
-      alert("The email is taken");
-      console.warn(e);
-    } finally {
-      setLoading(false);
-    }
-  };
-
+export default ({
+  firstName,
+  setFirstName,
+  lastName,
+  setLastName,
+  email,
+  setEmail,
+  password,
+  setPassword,
+  loading,
+  setLoading,
+  handleSubmit,
+}) => {
   return (
     <DismissKeyboard>
       <Container>

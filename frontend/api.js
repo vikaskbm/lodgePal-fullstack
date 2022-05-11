@@ -22,4 +22,5 @@ const callApi = async (method, path, data, jwt, params = {}) => {
 export default {
   createAccount: (form) => callApi("post", "/users/", form),
   login: (form) => callApi("post", "/users/token/", form),
+  rooms: (page) => callApi("get", `/rooms/?page=${page}`),
 };

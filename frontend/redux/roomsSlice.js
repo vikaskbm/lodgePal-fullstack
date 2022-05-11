@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import roomSlice from "./roomsSlice";
 import { ActivityIndicator } from "react-native";
 
 const roomSlice = createSlice({
