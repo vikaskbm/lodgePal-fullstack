@@ -4,7 +4,7 @@ import styled from "styled-components/native";
 import DismissKeyboard from "../../components/Auth/DismissKeyboard";
 import Btn from "./../../components/Auth/Btn";
 import Input from "./../../components/Auth/Input";
-import { isEmail } from "../../utils";
+import utils from "../../utils";
 import api from "../../api";
 
 const Container = styled.View`
@@ -35,7 +35,7 @@ export default ({ navigation }) => {
       return false;
     }
 
-    if (!isEmail(email)) {
+    if (!utils.isEmail(email)) {
       alert("Please add a valid email");
       return false;
     }
