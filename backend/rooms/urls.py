@@ -1,10 +1,11 @@
+from django.db import router
+from rest_framework.routers import DefaultRouter
 from django.urls import path
+
 from . import views
 
 app_name = "rooms"
+router = DefaultRouter()
+router.register("", views.RoomViewSet)
 
-urlpatterns = [
-    path('', views.RoomsView.as_view()),
-    path('search/', views.room_search),
-    path('<int:pk>/', views.RoomDetailView.as_view())
-]
+urlpatterns = router.urls
