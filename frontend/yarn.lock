@@ -9199,7 +9199,7 @@ react-is@^18.0.0:
 
 react-native-codegen@^0.0.13:
   version "0.0.13"
-  resolved "https://registry.npmjs.org/react-native-codegen/-/react-native-codegen-0.0.13.tgz"
+  resolved "https://registry.yarnpkg.com/react-native-codegen/-/react-native-codegen-0.0.13.tgz#4cc94546fc75a5dbe9350d59c10108f2efe6bc17"
   integrity sha512-rCh1P+s0Q4N6vNgS97ckafbhJRztz22+0l0VZoyQC06F07J98kI5cUByH0ATypPRIdpkMbAZc59DoPdDFc01bg==
   dependencies:
     "@babel/parser" "^7.14.0"
@@ -9264,7 +9264,7 @@ react-native-web@0.17.7:
 
 react-native@0.68.1:
   version "0.68.1"
-  resolved "https://registry.npmjs.org/react-native/-/react-native-0.68.1.tgz"
+  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.68.1.tgz#c3d92f89028cdc2453fe7cd2d532b3f68d1c27c8"
   integrity sha512-5gfvslo5NO2Ece2k/q41eVOK3ca4u1QAOf+qM+auvOiUA4/QR5Yr0WfSGbRpUr2GaFgv7qP11F4+elCravg7uQ==
   dependencies:
     "@jest/create-cache-key-function" "^27.0.1"

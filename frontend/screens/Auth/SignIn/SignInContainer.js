@@ -6,8 +6,8 @@ import SignInPresenter from "./SignInPresenter";
 
 export default ({ route: { params } }) => {
   const dispatch = useDispatch();
-  const [email, setEmail] = useState(params?.email);
-  const [password, setPassword] = useState(params?.password);
+  const [email, setEmail] = useState(params?.email || "ayushibajpai@gmail.com");
+  const [password, setPassword] = useState(params?.password || "Vikas@029");
 
   const isFormValid = () => {
     if (email === "" || password === "") {
@@ -21,9 +21,6 @@ export default ({ route: { params } }) => {
     return true;
   };
   const handleSubmit = () => {
-    console.log(1);
-    console.log(email);
-    console.log(password);
     if (!isFormValid()) {
       return;
     }
