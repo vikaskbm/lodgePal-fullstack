@@ -47,9 +47,8 @@ const SuperHostText = styled.Text`
 const PhotosContainer = styled.View`
   margin-bottom: 10px;
   overflow: hidden;
-  background-color: red;
-  height: ${height / 4}px;
   width: 100%;
+  height: ${height / 4}px;
 `;
 
 const SlideImage = styled.Image`
@@ -60,14 +59,14 @@ const SlideImage = styled.Image`
 const RoomCard = ({ id, name, isSuperHost, photos, isFav, price }) => (
   <Container>
     <PhotosContainer>
-      {photos?.length === 0 ? (
+      {photos.length === 0 ? (
         <SlideImage
           resizeMode="repeat"
           source={require("../assets/roomDefaultImg.jpeg")}
         />
       ) : (
         <Swiper>
-          {photos?.map((photo) => (
+          {photos.map((photo) => (
             <SlideImage key={photo.id} source={{ uri: photo.file }} />
           ))}
         </Swiper>

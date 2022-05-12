@@ -8,6 +8,7 @@ const Container = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
+  padding-horizontal: 15px;
 `;
 
 const Text = styled.Text``;
