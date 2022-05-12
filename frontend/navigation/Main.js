@@ -25,11 +25,9 @@ export default () => {
         },
         tabBarStyle: {
           height: 60,
-          position: "absolute",
           bottom: 0,
           left: 0,
           right: 0,
-          zIndex: 4,
           borderTopWidth: 0,
         },
         tabBarIconStyle: { marginTop: 4 },
