@@ -53,18 +53,17 @@ class UsersViewSet(ModelViewSet):
             return Response(data={"id": user.id, "token": encoded_jwt}, status=status.HTTP_202_ACCEPTED)
         else:
             return Response(status=status.HTTP_401_UNAUTHORIZED)
-
+        
+    @action(detail=True)
+    def favs(self, request, pk):
+        user = self.get_object()
+        serializer = RoomSerializer(user.favs.all(), many=True)
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
 
 
 
 class FavsView(APIView):
     # permission_classes = [IsAuthenticated,]
-
-    def get(self, request):
-        user = request.user
-        serializer = RoomSerializer(user.favs.all(), many=True)
-        return Response(data=serializer.data, status=status.HTTP_200_OK)
-    
     def put(self, request):
         pk = request.data.get("pk", None)
         user = request.user
