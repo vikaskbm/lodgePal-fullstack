@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Dimensions, Text } from "react-native";
 import styled from "styled-components/native";
-import Swiper from "react-native-swiper";
+import Swiper from "react-native-web-swiper";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -66,9 +66,13 @@ const RoomCard = ({ id, name, isSuperHost, photos, isFav, price }) => (
         />
       ) : (
         <Swiper
-          paginationStyle={{ marginBottom: -15 }}
-          activeDotColor={"white"}
-          dotColor={"rgba(200,200,200,0.5)"}
+          controlsProps={{
+            PrevComponent: () => null,
+            NextComponent: () => null,
+            dotActiveStyle: {
+              backgroundColor: "white",
+            },
+          }}
         >
           {photos.map((photo) => (
             <SlideImage key={photo.id} source={{ uri: photo.file }} />
