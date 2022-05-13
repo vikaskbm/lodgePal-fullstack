@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ActivityIndicator } from "react-native";
 import api from "../api";
 
 const roomSlice = createSlice({
@@ -26,22 +25,24 @@ const roomSlice = createSlice({
           rooms.push(payloadRoom);
         }
       });
-      state.explore.page = payload.page;
+    },
+    increasePage(state, action) {
+      console.log(state.explore.page);
+      state.explore.page += 1;
     },
   },
 });
 
-const { setExploreRooms } = roomSlice.actions;
+export const { setExploreRooms, increasePage } = roomSlice.actions;
 
-export const getRooms = () => async (dispatch) => {
+export const getRooms = (page) => async (dispatch) => {
   try {
     const {
       data: { results },
-    } = await api.rooms();
+    } = await api.rooms(page);
     dispatch(
       setExploreRooms({
         rooms: results,
-        page: 1,
       })
     );
   } catch (e) {
