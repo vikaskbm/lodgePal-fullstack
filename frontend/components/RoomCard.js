@@ -7,6 +7,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import utils from "../utils";
 import { useDispatch } from "react-redux";
 import { toggleFav } from "../redux/usersSlice";
+import colors from "../colors";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -77,14 +78,33 @@ const TOpacity = styled.TouchableOpacity`
   top: 10px;
 `;
 
+const getIconName = (isFav) => {
+  const isAndroid = utils.isAndroid();
+
+  if (isAndroid) {
+    if (isFav) {
+      return "md-heart";
+    }
+    return "heart-outline";
+  } else {
+    if (isFav) {
+      return "ios-heart";
+    }
+    return "ios-heart-empty";
+  }
+};
+
 const RoomCard = ({ id, name, isSuperHost, photos, isFav, price }) => {
   const dispatch = useDispatch();
-  console.log(photos);
   return (
     <Container>
       <TOpacity onPress={() => dispatch(toggleFav(id))}>
         <FavButton>
-          <Ionicons name={"md-heart-outline"} size={28} />
+          <Ionicons
+            color={isFav ? colors.red : "black"}
+            name={getIconName(isFav)}
+            size={28}
+          />
         </FavButton>
       </TOpacity>
       <PhotosContainer>

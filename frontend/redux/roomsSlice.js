@@ -32,11 +32,14 @@ const roomSlice = createSlice({
 
 export const { setExploreRooms, increasePage, setFavs } = roomSlice.actions;
 
-export const getRooms = (page) => async (dispatch) => {
+export const getRooms = (page) => async (dispatch, getState) => {
+  const {
+    usersReducer: { token },
+  } = getState();
   try {
     const {
       data: { results },
-    } = await api.rooms(page);
+    } = await api.rooms(page, token);
     dispatch(
       setExploreRooms({
         rooms: results,
