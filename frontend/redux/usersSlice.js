@@ -36,6 +36,15 @@ export const userLogin = (form) => async (dispatch) => {
 };
 
 export const getFavs = () => async (dispatch, getState) => {
-  console.log(getState());
+  const {
+    usersReducer: { id },
+  } = getState();
+
+  try {
+    const data = await api.favs(id);
+    console.log(data);
+  } catch (e) {
+    console.warn(e);
+  }
 };
 export default userSlice.reducer;
