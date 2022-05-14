@@ -1,5 +1,6 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 import Explore from "../screens/Main/Explore";
@@ -9,12 +10,13 @@ import Profile from "../screens/Main/Profile";
 
 import colors from "../colors";
 import utils from "./../utils";
+import Room from "../screens/Main/Room";
 
-const Main = createBottomTabNavigator();
+const TabsNavigator = createBottomTabNavigator();
 
-export default () => {
+const Tabs = () => {
   return (
-    <Main.Navigator
+    <TabsNavigator.Navigator
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: colors.red,
@@ -34,7 +36,7 @@ export default () => {
       }}
     >
       {/* <Ionicons name={"chevron-down"} size={25} /> */}
-      <Main.Screen
+      <TabsNavigator.Screen
         name="Explore"
         component={Explore}
         options={{
@@ -52,7 +54,7 @@ export default () => {
           },
         }}
       />
-      <Main.Screen
+      <TabsNavigator.Screen
         name="Saved"
         component={Saved}
         options={{
@@ -70,7 +72,7 @@ export default () => {
           },
         }}
       />
-      <Main.Screen
+      <TabsNavigator.Screen
         name="Map"
         component={MapScreen}
         options={{
@@ -88,7 +90,7 @@ export default () => {
           },
         }}
       />
-      <Main.Screen
+      <TabsNavigator.Screen
         name="Profile"
         component={Profile}
         options={{
@@ -106,6 +108,18 @@ export default () => {
           },
         }}
       />
-    </Main.Navigator>
+    </TabsNavigator.Navigator>
   );
 };
+
+const MainNavigator = createStackNavigator();
+export default () => (
+  <MainNavigator.Navigator
+    screenOptions={{
+      headerShown: false,
+    }}
+  >
+    <MainNavigator.Screen name="Tabs" component={Tabs} />
+    <MainNavigator.Screen name="RoomDetail" component={Room} />
+  </MainNavigator.Navigator>
+);

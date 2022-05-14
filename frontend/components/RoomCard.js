@@ -8,6 +8,7 @@ import utils from "../utils";
 import { useDispatch } from "react-redux";
 import { toggleFav } from "../redux/usersSlice";
 import colors from "../colors";
+import { useNavigation } from "@react-navigation/native";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -96,8 +97,9 @@ const getIconName = (isFav) => {
 
 const RoomCard = ({ id, name, isSuperHost, photos, isFav, price }) => {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
   return (
-    <Container>
+    <Container onPress={() => navigation.navigate("RoomDetail")}>
       <TOpacity onPress={() => dispatch(toggleFav(id))}>
         <FavButton>
           <Ionicons
