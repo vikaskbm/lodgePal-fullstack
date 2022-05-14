@@ -10,7 +10,7 @@ const PhotosContainer = styled.View`
   margin-bottom: 10px;
   overflow: hidden;
   width: 100%;
-  height: ${height / 4}px;
+  height: ${(props) => `${height / props.factor}`}px;
 `;
 
 const SlideImage = styled.Image`
@@ -18,8 +18,8 @@ const SlideImage = styled.Image`
   height: 100%;
 `;
 
-const RoomPhotos = ({ photos }) => (
-  <PhotosContainer>
+const RoomPhotos = ({ photos, factor = 4 }) => (
+  <PhotosContainer factor={factor}>
     {photos.length === 0 ? (
       <SlideImage
         resizeMode="repeat"
@@ -44,7 +44,7 @@ const RoomPhotos = ({ photos }) => (
 );
 
 RoomPhotos.propTypes = {
-  photos: PropTypes.objectOf(
+  photos: PropTypes.arrayOf(
     PropTypes.shape({
       file: PropTypes.string,
     })

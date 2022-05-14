@@ -2,11 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components/native";
 import RoomPhotos from "./../../components/RoomPhotos";
 
-const Container = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`;
+const Container = styled.View``;
 
 const Text = styled.Text``;
 
@@ -16,7 +12,7 @@ export default ({ route: { params }, navigation }) => {
   }, []);
   return (
     <Container>
-      <RoomPhotos photos={params.photos} />
+      <RoomPhotos photos={params.photos} factor={2} />
     </Container>
   );
 };
