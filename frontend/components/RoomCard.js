@@ -1,16 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Dimensions, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
-import Swiper from "react-native-web-swiper";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import utils from "../utils";
 import { useDispatch } from "react-redux";
 import { toggleFav } from "../redux/usersSlice";
 import colors from "../colors";
 import { useNavigation } from "@react-navigation/native";
-
-const { width, height } = Dimensions.get("screen");
+import RoomPhotos from "./RoomPhotos";
 
 const Container = styled.View`
   width: 100%;
@@ -49,18 +47,6 @@ const SuperHostText = styled.Text`
   text-transform: uppercase;
   font-weight: 500;
   font-size: 12px;
-`;
-
-const PhotosContainer = styled.View`
-  margin-bottom: 10px;
-  overflow: hidden;
-  width: 100%;
-  height: ${height / 4}px;
-`;
-
-const SlideImage = styled.Image`
-  width: 100%;
-  height: 100%;
 `;
 
 const FavButton = styled.View`
@@ -112,29 +98,7 @@ const RoomCard = ({ id, name, isSuperHost, photos, isFav, price, roomObj }) => {
             />
           </FavButton>
         </TOpacity>
-        <PhotosContainer>
-          {photos.length === 0 ? (
-            <SlideImage
-              resizeMode="repeat"
-              source={require("../assets/roomDefaultImg.jpeg")}
-            />
-          ) : (
-            <Swiper
-              controlsProps={{
-                PrevComponent: () => null,
-                NextComponent: () => null,
-                dotActiveStyle: {
-                  backgroundColor: "white",
-                },
-              }}
-            >
-              {photos.map((photo) => (
-                <SlideImage key={photo.id} source={{ uri: photo.file }} />
-              ))}
-            </Swiper>
-          )}
-        </PhotosContainer>
-
+        <RoomPhotos photos={photos} />
         {isSuperHost ? (
           <SuperHostContainer>
             <SuperHostText>Superhost</SuperHostText>
