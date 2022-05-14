@@ -85,20 +85,23 @@ const RoomCard = ({ id, name, isSuperHost, photos, isFav, price, roomObj }) => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   return (
-    <TouchableOpacity
-      onPress={() => navigation.navigate("RoomDetail", { ...roomObj })}
-    >
-      <Container>
-        <TOpacity onPress={() => dispatch(toggleFav(id))}>
-          <FavButton>
-            <Ionicons
-              color={isFav ? colors.red : "black"}
-              name={getIconName(isFav)}
-              size={28}
-            />
-          </FavButton>
-        </TOpacity>
-        <RoomPhotos photos={photos} />
+    <Container>
+      <TOpacity onPress={() => dispatch(toggleFav(id))}>
+        <FavButton>
+          <Ionicons
+            color={isFav ? colors.red : "black"}
+            name={getIconName(isFav)}
+            size={28}
+          />
+        </FavButton>
+      </TOpacity>
+
+      <RoomPhotos photos={photos} />
+
+      <TouchableOpacity
+        style={{ alignItems: "flex-start" }}
+        onPress={() => navigation.navigate("RoomDetail", { ...roomObj })}
+      >
         {isSuperHost ? (
           <SuperHostContainer>
             <SuperHostText>Superhost</SuperHostText>
@@ -110,8 +113,8 @@ const RoomCard = ({ id, name, isSuperHost, photos, isFav, price, roomObj }) => {
           <PriceNumber>${price}</PriceNumber>
           <PriceText> / night</PriceText>
         </PriceContainer>
-      </Container>
-    </TouchableOpacity>
+      </TouchableOpacity>
+    </Container>
   );
 };
 
