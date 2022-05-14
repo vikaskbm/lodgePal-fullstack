@@ -11,6 +11,7 @@ const userSlice = createSlice({
     logIn(state, action) {
       state.isLoggedIn = true;
       state.token = action.payload.token;
+      state.id = action.payload.id;
     },
     logOut(state, action) {
       state.isLoggedIn = false;
@@ -27,10 +28,14 @@ export const userLogin = (form) => async (dispatch) => {
       data: { id, token },
     } = await api.login(form);
     if (id && token) {
-      dispatch(logIn({ token }));
+      dispatch(logIn({ token, id }));
     }
   } catch (e) {
     alert(e);
   }
+};
+
+export const getFavs = () => async (dispatch, getState) => {
+  console.log(getState());
 };
 export default userSlice.reducer;
