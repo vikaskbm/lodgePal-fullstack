@@ -47,4 +47,19 @@ export const getFavs = () => async (dispatch, getState) => {
     console.warn(e);
   }
 };
+
+export const toggleFav = (roomId) => async (dispatch, getState) => {
+  const {
+    usersReducer: { id, token },
+  } = getState;
+
+  try {
+    const { data, status } = await api.tloggleFavs(id, roomId, token);
+    console.log(data);
+    console.log(status);
+  } catch (e) {
+    console.warn(e);
+  }
+  console.log(id, token);
+};
 export default userSlice.reducer;
