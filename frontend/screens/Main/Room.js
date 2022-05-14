@@ -9,7 +9,7 @@ const Container = styled.View`
 
 const Text = styled.Text``;
 
-export default () => (
+export default ({ route: { params } }) => (
   <Container>
     <Text>Room</Text>
   </Container>

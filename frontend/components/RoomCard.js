@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Dimensions } from "react-native";
+import { Dimensions, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import Swiper from "react-native-web-swiper";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -95,55 +95,59 @@ const getIconName = (isFav) => {
   }
 };
 
-const RoomCard = ({ id, name, isSuperHost, photos, isFav, price }) => {
+const RoomCard = ({ id, name, isSuperHost, photos, isFav, price, roomObj }) => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   return (
-    <Container onPress={() => navigation.navigate("RoomDetail")}>
-      <TOpacity onPress={() => dispatch(toggleFav(id))}>
-        <FavButton>
-          <Ionicons
-            color={isFav ? colors.red : "black"}
-            name={getIconName(isFav)}
-            size={28}
-          />
-        </FavButton>
-      </TOpacity>
-      <PhotosContainer>
-        {photos.length === 0 ? (
-          <SlideImage
-            resizeMode="repeat"
-            source={require("../assets/roomDefaultImg.jpeg")}
-          />
-        ) : (
-          <Swiper
-            controlsProps={{
-              PrevComponent: () => null,
-              NextComponent: () => null,
-              dotActiveStyle: {
-                backgroundColor: "white",
-              },
-            }}
-          >
-            {photos.map((photo) => (
-              <SlideImage key={photo.id} source={{ uri: photo.file }} />
-            ))}
-          </Swiper>
-        )}
-      </PhotosContainer>
+    <TouchableOpacity
+      onPress={() => navigation.navigate("RoomDetail", { ...roomObj })}
+    >
+      <Container>
+        <TOpacity onPress={() => dispatch(toggleFav(id))}>
+          <FavButton>
+            <Ionicons
+              color={isFav ? colors.red : "black"}
+              name={getIconName(isFav)}
+              size={28}
+            />
+          </FavButton>
+        </TOpacity>
+        <PhotosContainer>
+          {photos.length === 0 ? (
+            <SlideImage
+              resizeMode="repeat"
+              source={require("../assets/roomDefaultImg.jpeg")}
+            />
+          ) : (
+            <Swiper
+              controlsProps={{
+                PrevComponent: () => null,
+                NextComponent: () => null,
+                dotActiveStyle: {
+                  backgroundColor: "white",
+                },
+              }}
+            >
+              {photos.map((photo) => (
+                <SlideImage key={photo.id} source={{ uri: photo.file }} />
+              ))}
+            </Swiper>
+          )}
+        </PhotosContainer>
 
-      {isSuperHost ? (
-        <SuperHostContainer>
-          <SuperHostText>Superhost</SuperHostText>
-        </SuperHostContainer>
-      ) : null}
+        {isSuperHost ? (
+          <SuperHostContainer>
+            <SuperHostText>Superhost</SuperHostText>
+          </SuperHostContainer>
+        ) : null}
 
-      <Name>{name}</Name>
-      <PriceContainer>
-        <PriceNumber>${price}</PriceNumber>
-        <PriceText> / night</PriceText>
-      </PriceContainer>
-    </Container>
+        <Name>{name}</Name>
+        <PriceContainer>
+          <PriceNumber>${price}</PriceNumber>
+          <PriceText> / night</PriceText>
+        </PriceContainer>
+      </Container>
+    </TouchableOpacity>
   );
 };
 
@@ -158,6 +162,7 @@ RoomCard.propType = {
   ),
   isFav: PropTypes.bool.isRequired,
   price: PropTypes.number.isRequired,
+  roomObj: PropTypes.object.isRequired,
 };
 
 export default RoomCard;

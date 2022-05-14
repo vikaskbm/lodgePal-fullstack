@@ -11,6 +11,7 @@ import Profile from "../screens/Main/Profile";
 import colors from "../colors";
 import utils from "./../utils";
 import Room from "../screens/Main/Room";
+import BackBtn from "../components/Auth/BackBtn";
 
 const TabsNavigator = createBottomTabNavigator();
 
@@ -116,7 +117,10 @@ const MainNavigator = createStackNavigator();
 export default () => (
   <MainNavigator.Navigator
     screenOptions={{
-      headerShown: false,
+      presentation: "modal",
+      headerTitleAlign: "center",
+      headerTransparent: true,
+      headerBackImage: () => <BackBtn />,
     }}
   >
     <MainNavigator.Screen name="Tabs" component={Tabs} />
