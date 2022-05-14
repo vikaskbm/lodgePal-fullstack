@@ -24,6 +24,6 @@ export default {
   login: (form) => callApi("post", "/users/login/", form),
   rooms: (page = 1) => callApi("get", `/rooms/?page=${page}`),
   favs: (id) => callApi("get", `/users/${id}/favs`),
-  tloggleFavs: (userId, roomId, token) =>
-    callApi("put", `/users/${userId}/favs`, { pk: roomId }, token),
+  toggleFavs: (userId, roomId, token) =>
+    callApi("put", `/users/${userId}/favs/`, { pk: roomId }, token),
 };

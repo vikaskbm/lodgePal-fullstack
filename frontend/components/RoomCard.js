@@ -81,12 +81,9 @@ const RoomCard = ({ id, name, isSuperHost, photos, isFav, price }) => {
   const dispatch = useDispatch();
   return (
     <Container>
-      <TOpacity onPress={dispatch(toggleFav(id))}>
+      <TOpacity onPress={() => dispatch(toggleFav(id))}>
         <FavButton>
-          <Ionicons
-            name={utils.isAndroid ? "md-heart-empty" : "ios-heart-empty"}
-            size={28}
-          />
+          <Ionicons name={"md-heart-outline"} size={28} />
         </FavButton>
       </TOpacity>
       <PhotosContainer>
