@@ -1,5 +1,6 @@
 from cmath import pi
 from copyreg import constructor
+from multiprocessing import context
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import authenticate
 from django.conf import settings
@@ -57,7 +58,7 @@ class UsersViewSet(ModelViewSet):
     @action(detail=True)
     def favs(self, request, pk):
         user = self.get_object()
-        serializer = RoomSerializer(user.favs.all(), many=True)
+        serializer = RoomSerializer(user.favs.all(), many=True, context={'request': request})
         return Response(data=serializer.data, status=status.HTTP_200_OK)
     
     @favs.mapping.put

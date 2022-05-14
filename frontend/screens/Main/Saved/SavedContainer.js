@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
 import SavedPresenter from "./SavedPresenter";
 
-export default ({ getFavs }) => {
+export default ({ getFavs, rooms }) => {
   useEffect(() => {
     getFavs();
-    console.log("Vikas");
   }, []);
-  return <SavedPresenter />;
+  return <SavedPresenter rooms={rooms} />;
 };

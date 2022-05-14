@@ -79,6 +79,7 @@ const TOpacity = styled.TouchableOpacity`
 
 const RoomCard = ({ id, name, isSuperHost, photos, isFav, price }) => {
   const dispatch = useDispatch();
+  console.log(photos);
   return (
     <Container>
       <TOpacity onPress={() => dispatch(toggleFav(id))}>
