@@ -27,4 +27,5 @@ export default {
   favs: (id, token) => callApi("get", `/users/${id}/favs`, null, token),
   toggleFavs: (userId, roomId, token) =>
     callApi("put", `/users/${userId}/favs/`, { pk: roomId }, token),
+  search: (form, token) => callApi("get", "/rooms/search/", null, token, form),
 };

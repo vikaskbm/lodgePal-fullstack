@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import styled from "styled-components/native";
 import DismissKeyboard from "../../../components/Auth/DismissKeyboard";
 import { useNavigation } from "@react-navigation/native";
-import { TextInput } from "react-native";
+import { ActivityIndicator, Keyboard } from "react-native";
 import colors from "../../../colors";
+import api from "../../../api";
 
 const Container = styled.View`
   padding: 0px;
@@ -70,14 +71,23 @@ const SearchText = styled.Text`
   font-size: 16px;
 `;
 
+const ResultsText = styled.Text`
+  margin-top: 10px;
+  font-size: 16px;
+  text-align: center;
+`;
+
 export default () => {
   const navigation = useNavigation();
+  const [searching, setSearching] = useState(false);
   const [beds, setBeds] = useState();
   const [bedrooms, setBedrooms] = useState();
   const [bathrooms, setBathrooms] = useState();
   const [maxPrice, setMaxPrice] = useState();
+  const [results, setResults] = useState();
 
-  const submit = () => {
+  const triggerSearch = async () => {
+    setSearching(true);
     const form = {
       ...(beds && { beds }),
       ...(bedrooms && { bedrooms }),
@@ -85,7 +95,16 @@ export default () => {
       ...(maxPrice && { max_price: maxPrice }),
     };
 
-    console.log(form);
+    try {
+      const { data } = await api.search(form, null);
+      console.log(data);
+      setResults(data);
+    } catch (e) {
+      console.warn(form);
+    } finally {
+      Keyboard.dismiss();
+      setSearching(false);
+    }
   };
 
   return (
@@ -148,9 +167,17 @@ export default () => {
           </FilterContainer> */}
           </FiltersContainer>
         </Container>
-        <SearchBtn onPress={submit}>
-          <SearchText>Search</SearchText>
+        <SearchBtn onPress={searching ? null : triggerSearch}>
+          {searching ? (
+            <ActivityIndicator color="white" />
+          ) : (
+            <SearchText>Search</SearchText>
+          )}
         </SearchBtn>
+
+        {results ? (
+          <ResultsText>Showing {results.count} results</ResultsText>
+        ) : null}
       </>
     </DismissKeyboard>
   );
