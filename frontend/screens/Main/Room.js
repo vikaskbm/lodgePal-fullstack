@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import styled from "styled-components/native";
 import colors from "../../colors";
 import RoomPhotos from "./../../components/RoomPhotos";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import utils from "../../utils";
 
 const Container = styled.View``;
 
@@ -30,6 +32,24 @@ const PropertyInfoText = styled.Text`
   padding: 5px 10px;
 `;
 
+const CheckContainer = styled.View`
+  margin-top: 40px;
+`;
+
+const CheckTitleContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;
+
+const CheckTitle = styled.Text`
+  font-size: 18px;
+  margin-left: 15px;
+`;
+
+const CheckTime = styled.Text`
+  margin-top: 10px;
+`;
+
 const formatQty = (number, name) => {
   if (number === 1) {
     return `${number} ${name}`;
@@ -37,7 +57,19 @@ const formatQty = (number, name) => {
   return `${number} ${name}s`;
 };
 
+const formatTime = (time) => {
+  let [hours, minutes, seconds] = time.split(":");
+  let ampm = hours >= 12 ? "PM" : "AM";
+  hours = hours % 12;
+  hours = hours ? hours : 12;
+  minutes = minutes < 10 ? "0" + minutes : minutes;
+  const formattedTime = hours + ":" + minutes + " " + ampm;
+  return formattedTime;
+};
+
 export default ({ route: { params }, navigation }) => {
+  console.log(params.check_in);
+  console.log(params.check_out);
   useEffect(() => {
     navigation.setOptions({ title: params.name });
   }, []);
@@ -62,6 +94,21 @@ export default ({ route: { params }, navigation }) => {
             </PropertyInfoText>
           </PropertyInfoData>
         </PropertyInfoContainer>
+
+        <CheckContainer>
+          <CheckTitleContainer>
+            <Ionicons
+              name={
+                utils.isAndroid() ? "md-timer-outline" : "ios-timer-outline"
+              }
+              size={24}
+            />
+            <CheckTitle>Check-in / Check-out</CheckTitle>
+          </CheckTitleContainer>
+          <CheckTime>
+            {formatTime(params.check_in)} / {formatTime(params.check_out)}
+          </CheckTime>
+        </CheckContainer>
       </DataContainer>
     </Container>
   );
