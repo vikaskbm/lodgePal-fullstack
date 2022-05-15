@@ -54,5 +54,5 @@ class RoomViewSet(ModelViewSet):
         
         paginator = self.paginator
         results = paginator.paginate_queryset(rooms.order_by("-id"), request)
-        serializer = RoomSerializer(results, many=True)
+        serializer = RoomSerializer(results, many=True, context={"request": request})
         return paginator.get_paginated_response(serializer.data)

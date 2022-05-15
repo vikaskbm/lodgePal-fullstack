@@ -5,6 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import { ActivityIndicator, Keyboard } from "react-native";
 import colors from "../../../colors";
 import api from "../../../api";
+import RoomCard from "../../../components/RoomCard";
 
 const Container = styled.View`
   padding: 0px;
@@ -75,6 +76,10 @@ const ResultsText = styled.Text`
   margin-top: 10px;
   font-size: 16px;
   text-align: center;
+`;
+
+const Results = styled.ScrollView`
+  margin-top: 25px;
 `;
 
 export default () => {
@@ -178,6 +183,20 @@ export default () => {
         {results ? (
           <ResultsText>Showing {results.count} results</ResultsText>
         ) : null}
+        <Results contentContainerStyle={{ paddingHorizontal: 15 }}>
+          {results?.results?.map((room) => (
+            <RoomCard
+              key={room.id}
+              name={room.name}
+              price={room.price}
+              photos={room.photos}
+              id={room.id}
+              isFav={room.is_fav}
+              isSuperHost={room.user.superhost}
+              roomObj={room}
+            />
+          ))}
+        </Results>
       </>
     </DismissKeyboard>
   );
