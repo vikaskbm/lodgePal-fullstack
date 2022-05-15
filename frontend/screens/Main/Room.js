@@ -4,11 +4,12 @@ import colors from "../../colors";
 import RoomPhotos from "./../../components/RoomPhotos";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import utils from "../../utils";
+import MapView, { Marker } from "react-native-maps";
 
-const Container = styled.View``;
+const Container = styled.ScrollView``;
 
 const DataContainer = styled.View`
-  padding: 0px 30px;
+  padding: 0px 20px;
 `;
 const Address = styled.Text`
   margin-top: 10px;
@@ -50,6 +51,13 @@ const CheckTime = styled.Text`
   margin-top: 10px;
 `;
 
+const MapContainer = styled.View`
+  width: 100%;
+  height: 250px;
+  margin-top: 30px;
+  margin-bottom: 5px;
+`;
+
 const formatQty = (number, name) => {
   if (number === 1) {
     return `${number} ${name}`;
@@ -68,8 +76,6 @@ const formatTime = (time) => {
 };
 
 export default ({ route: { params }, navigation }) => {
-  console.log(params.check_in);
-  console.log(params.check_out);
   useEffect(() => {
     navigation.setOptions({ title: params.name });
   }, []);
@@ -78,7 +84,9 @@ export default ({ route: { params }, navigation }) => {
       <RoomPhotos photos={params.photos} factor={2} />
 
       <DataContainer>
-        <Address>{params.address}</Address>
+        <Address>
+          {params.address} / ${params.price}
+        </Address>
         <PropertyInfoContainer>
           <PropertyInfoData>
             <PropertyInfoText>{formatQty(params.beds, "bed")}</PropertyInfoText>
@@ -109,6 +117,31 @@ export default ({ route: { params }, navigation }) => {
             {formatTime(params.check_in)} / {formatTime(params.check_out)}
           </CheckTime>
         </CheckContainer>
+
+        <MapContainer>
+          <MapView
+            camera={{
+              center: {
+                latitude: parseFloat(params.lat),
+                longitude: parseFloat(params.lng),
+              },
+              heading: 0,
+              pitch: 30,
+              altitude: 10 * 400,
+              zoom: 10 * 400,
+            }}
+            zoomEnabled={false}
+            scrollEnabled={false}
+            style={{ height: "100%", width: "100%" }}
+          >
+            <Marker
+              coordinate={{
+                longitude: parseFloat(params.lng),
+                latitude: parseFloat(params.lat),
+              }}
+            />
+          </MapView>
+        </MapContainer>
       </DataContainer>
     </Container>
   );

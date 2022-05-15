@@ -118,8 +118,8 @@ const Tabs = () => {
 const MainNavigator = createStackNavigator();
 export default () => (
   <MainNavigator.Navigator
-    mode="modal"
     screenOptions={{
+      presentation: "modal",
       headerBackTitleVisible: false,
       headerBackImage: () => <BackBtn />,
     }}
