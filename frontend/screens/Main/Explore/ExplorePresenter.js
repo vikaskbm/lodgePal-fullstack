@@ -22,7 +22,7 @@ const FakeBar = styled.View`
   width: 100%;
   background-color: white;
   margin: 80px 0px 15px 0px;
-  box-shadow: 10px 5px 5px red;
+  box-shadow: 1px 5px 5px rgba(200, 200, 200, 0.5);
   border-radius: 12px;
   justify-content: center;
   padding-left: 10px;
