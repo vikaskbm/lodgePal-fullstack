@@ -19,23 +19,23 @@ Users can create and update account by logging onto on the app.
 
 1. Welcome Screen
 
-![Login/Welcome Screen](./assets/1.png)
+![Login/Welcome Screen](./assets/1.jpeg)
 
 2. Login Screen
 
-![Login Screen](./assets/2.png)
+![Login Screen](./assets/2.jpeg)
 
 3. Home Page
 
-![Home Page Screen](./assets/3.png)
+![Home Page Screen](./assets/3.jpeg)
 
 4. Search Screen
 
-![Search Screen](./assets/4.png)
+![Search Screen](./assets/4.jpeg)
 
 5. Favourites Chat
 
-![Favourites Screen](./assets/5.png)
+![Favourites Screen](./assets/5.jpeg)
 
 ## Future Plans
 
