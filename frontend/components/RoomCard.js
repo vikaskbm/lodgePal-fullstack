@@ -89,7 +89,7 @@ const RoomCard = ({ id, name, isSuperHost, photos, isFav, price, roomObj }) => {
       <TOpacity onPress={() => dispatch(toggleFav(id))}>
         <FavButton>
           <Ionicons
-            color={isFav ? colors.red : "black"}
+            color={isFav ? colors.red2 : "black"}
             name={getIconName(isFav)}
             size={28}
           />

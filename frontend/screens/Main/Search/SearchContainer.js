@@ -4,7 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Keyboard } from "react-native";
 import api from "../../../api";
 
-export default (token) => {
+export default ({ token = null }) => {
   const navigation = useNavigation();
   const [searching, setSearching] = useState(false);
   const [beds, setBeds] = useState();
@@ -24,7 +24,6 @@ export default (token) => {
 
     try {
       const { data } = await api.search(form, token);
-      console.log(data);
       setResults(data);
     } catch (e) {
       console.warn(form);

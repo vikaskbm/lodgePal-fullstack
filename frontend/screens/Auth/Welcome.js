@@ -3,6 +3,7 @@ import { Text, View, Button, StatusBar } from "react-native";
 import styled from "styled-components/native";
 import { BlurView } from "expo-blur";
 import Btn from "../../components/Auth/Btn";
+import LOGO from "./../../assets/logo.png";
 
 const LOGO_URL =
   "http://pluspng.com/img-png/airbnb-logo-png-logo-black-transparent-airbnb-329.png";
@@ -20,9 +21,7 @@ const Image = styled.Image`
 `;
 
 const Logo = styled.Image`
-  margin-top: 100px;
-  width: 140px;
-  height: 140px;
+  margin-top: 140px;
 `;
 
 const BtnContainer = styled.View`
@@ -45,7 +44,7 @@ export default ({ navigation }) => {
         intensity={60}
         width="100%"
       >
-        <Logo source={{ uri: LOGO_URL }} />
+        <Logo source={require("../../assets/logo.png")} />
         <BtnContainer>
           <Btn onPress={goToSignUp} text={"Sign Up"} accent={true} />
           <Btn onPress={goToSignIn} text={"Sign In"} />

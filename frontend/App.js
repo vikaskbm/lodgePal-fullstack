@@ -28,7 +28,7 @@ export default function App() {
     const images = [
       require("./assets/loginBg.png"),
       require("./assets/roomDefaultImg.jpeg"),
-      "http://pluspng.com/img-png/airbnb-logo-png-logo-black-transparent-airbnb-329.png",
+      require("./assets/logo.png"),
     ];
     const fonts = [Ionicons.font];
 
