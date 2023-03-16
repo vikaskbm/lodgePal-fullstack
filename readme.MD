@@ -1,4 +1,4 @@
-# vaarta
+# LodgePal
 
 ## About
 
